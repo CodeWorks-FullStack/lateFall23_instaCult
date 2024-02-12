@@ -1,22 +1,48 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 card align-items-center shadow rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo"
-        class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
+    <div class="container">
+
+        <CultForm/>
+
+      <section class="row">
+
+        <div v-for="cult in cults" :key="cult.id" class="col-md-4">
+          <!-- {{ cult.name }} -->
+          <CultCard :cult="cult"/>
+        </div>
+
+
+      </section>
+      <!-- {{ cults }} -->
+
     </div>
-  </div>
 </template>
 
 <script>
+import { computed, onMounted } from 'vue';
+import { AppState } from '../AppState.js';
+import Pop from '../utils/Pop.js';
+import { cultsService } from '../services/CultsService.js';
+import CultCard from '../components/CultCard.vue'
+import CultForm from '../components/CultForm.vue';
 export default {
   setup() {
-    return {
-      
+    onMounted(()=>{
+      getCults()
+    })
+
+
+    async function getCults(){
+      try {
+        await cultsService.getCults()
+      } catch (error) {
+        Pop.error(error, "[GET CULTS]")
+      }
     }
-  }
+    return {
+      cults: computed(()=> AppState.cults)
+    }
+  },
+  components: { CultCard, CultForm }
 }
 </script>
 
