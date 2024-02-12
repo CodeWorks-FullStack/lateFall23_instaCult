@@ -1,0 +1,58 @@
+
+{
+  "folders": [
+    {
+      "path": "client",
+      "name": "client"
+    },
+    {
+      "path": "server",
+      "name": "server"
+    },{"path":".github/workflows", "name":"workflows"}
+  ],
+  "settings": {
+    "editor.suggestSelection": "first",
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "javascript.referencesCodeLens.enabled": true,
+    "javascript.referencesCodeLens.showOnAllFunctions": true,
+    "typescript.implementationsCodeLens.enabled": true,
+    "typescript.referencesCodeLens.enabled": true,
+    "typescript.referencesCodeLens.showOnAllFunctions": true,
+    "js/ts.implicitProjectConfig.checkJs": true,
+    "files.exclude": {
+      "**/.nyc_*": true,
+      "**/coverage": true,
+      "**/node_modules": true
+    },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "explorer.confirmDragAndDrop": false,
+    "eslint.alwaysShowStatus": true,
+    "eslint.format.enable": true,
+    "eslint.lintTask.enable": true,
+    "eslint.codeActionsOnSave.mode": "all",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit"
+    },
+    "workbench.colorCustomizations": {
+      "commandCenter.border": "#e7e7e799",
+      "editorGroup.border": "#990000",
+      "sash.hoverBorder": "#990000",
+      "sideBar.border": "#990000",
+      "statusBar.background": "#990000",
+      "statusBar.debuggingBackground": "#009999",
+      "statusBar.debuggingForeground": "#e7e7e7",
+      "statusBar.foreground": "#e7e7e7",
+      "statusBarItem.hoverBackground": "#cc0000",
+      "statusBarItem.remoteBackground": "#990000",
+      "statusBarItem.remoteForeground": "#e7e7e7",
+      "tab.activeBorder": "#990000",
+      "titleBar.activeBackground": "#990000",
+      "titleBar.activeForeground": "#e7e7e7",
+      "titleBar.inactiveBackground": "#99000099",
+      "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#990000"
+  }
+}
