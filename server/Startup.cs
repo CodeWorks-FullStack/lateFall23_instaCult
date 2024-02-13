@@ -30,9 +30,13 @@ public class Startup
     });
     services.AddSingleton<Auth0Provider>();
     services.AddScoped<IDbConnection>(x => CreateDbConnection());
+    // NOTE adding our many to many ABOVE the other models, since they will depend on it's service down the line
+    services.AddScoped<CultMembersRepository>();
+    services.AddScoped<CultMembersService>();
 
     services.AddScoped<AccountsRepository>();
     services.AddScoped<AccountService>();
+
 
     services.AddScoped<CultsRepository>();
     services.AddScoped<CultsService>();

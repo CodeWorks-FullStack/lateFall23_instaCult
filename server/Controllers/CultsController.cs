@@ -10,11 +10,13 @@ public class CultsController : ControllerBase
 {
   private readonly Auth0Provider auth;
   private readonly CultsService cultsService;
+  private readonly CultMembersService cultMembersService;
 
-    public CultsController(CultsService cultsService, Auth0Provider auth)
+    public CultsController(CultsService cultsService, Auth0Provider auth, CultMembersService cultMembersService = null)
     {
         this.cultsService = cultsService;
         this.auth = auth;
+        this.cultMembersService = cultMembersService;
     }
 
     [HttpGet]
@@ -83,4 +85,24 @@ public class CultsController : ControllerBase
         return BadRequest(error.Message);
       }
     }
+
+    [HttpGet("{cultId}/cultMembers")]
+    public ActionResult<List<CultMemberProfile>> GetCultMembers(int cultId)
+    {
+      try
+      {
+        List<CultMemberProfile> cultists = cultMembersService.GetCultMembersByCultId(cultId);
+        return Ok(cultists);
+      }
+     // NOTE first catch will catch any specific errors you throw
+        catch (HttpRequestException error)
+      {
+        return StatusCode((int)error.StatusCode, error.Message);
+      }
+      // NOTE second catch will catch all other general errors, not thrown by you
+        catch (Exception error)
+      {
+        return BadRequest(error.Message);
+      }
+    } 
 }

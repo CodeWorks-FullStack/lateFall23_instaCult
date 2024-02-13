@@ -7,3 +7,9 @@ public class Cult : RepoItem<int>{
   public string LeaderId { get; set; }
   public Profile Leader { get; set; }
 }
+
+// NOTE the we will get this when we are asking for the cults I am in.
+public class CultViewModel : Cult
+{
+   public int CultMemberId { get; set; }
+}

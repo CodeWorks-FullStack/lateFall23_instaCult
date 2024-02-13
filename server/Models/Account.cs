@@ -13,3 +13,8 @@ public class Account : Profile
   public string PhoneNumber { get; set; } 
   public string  CreditCardNumber { get; set; }
 }
+
+public class CultMemberProfile : Profile
+{
+  public int CultMemberId { get; set; }
+}

@@ -5,15 +5,17 @@ namespace instaCult.Controllers;
 public class AccountController : ControllerBase
 {
   private readonly AccountService _accountService;
+  private readonly CultMembersService _cultMembersService;
   private readonly Auth0Provider _auth0Provider;
 
-  public AccountController(AccountService accountService, Auth0Provider auth0Provider)
-  {
-    _accountService = accountService;
-    _auth0Provider = auth0Provider;
-  }
+    public AccountController(AccountService accountService, Auth0Provider auth0Provider, CultMembersService cultMembersService)
+    {
+        _accountService = accountService;
+        _auth0Provider = auth0Provider;
+        _cultMembersService = cultMembersService;
+    }
 
-  [HttpGet]
+    [HttpGet]
   [Authorize]
   public async Task<ActionResult<Account>> Get()
   {
@@ -23,6 +25,22 @@ public class AccountController : ControllerBase
       return Ok(_accountService.GetOrCreateProfile(userInfo));
     }
     catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
+  [HttpGet("cultMembers")]
+  [Authorize]
+  public async Task<ActionResult<List<CultViewModel>>> GetMyCults()
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      List<CultViewModel> myCults = _cultMembersService.GetMyCults(userInfo.Id);
+      return Ok(myCults);
+    }
+      catch (Exception e)
     {
       return BadRequest(e.Message);
     }
