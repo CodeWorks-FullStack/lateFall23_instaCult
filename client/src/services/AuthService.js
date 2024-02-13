@@ -5,6 +5,7 @@ import { router } from '../router'
 import { accountService } from './AccountService'
 import { api } from './AxiosService'
 import { socketService } from './SocketService'
+import { cultMembersService } from './CultMembersService.js'
 
 export const AuthService = initialize({
   domain,
@@ -27,6 +28,8 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function() {
   await accountService.getAccount()
   socketService.authenticate(AuthService.bearer)
   // NOTE if there is something you want to do once the user is authenticated, place that here
+  // REVIEW gets information AFTER the log in occurs, keeps it from replying on a single page to call, it, make it available for each page.
+  cultMembersService.getMyCults()
 })
 
 async function refreshAuthToken(config) {

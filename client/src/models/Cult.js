@@ -13,3 +13,10 @@ export class Cult{
     this.updatedAt = new Date(data.updatedAt)
   }
 }
+
+export class CultViewModel extends Cult{
+  constructor(data){
+    super(data)
+    this.cultMemberId = data.cultMemberId
+  }
+}

@@ -7,6 +7,13 @@ export class Profile{
   }
 }
 
+export class CultMemberProfile extends Profile{
+  constructor(data){
+    super(data)
+    this.cultMemberId = data.cultMemberId
+  }
+}
+
 export class Account extends Profile {
   constructor(data) {
     super(data) // invokes the contractor from the extend class

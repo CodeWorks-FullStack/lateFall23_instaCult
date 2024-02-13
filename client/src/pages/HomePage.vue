@@ -39,7 +39,8 @@ export default {
       }
     }
     return {
-      cults: computed(()=> AppState.cults)
+      cults: computed(()=> AppState.cults),
+      accountCults: computed(()=> AppState.accountCults)
     }
   },
   components: { CultCard, CultForm }
